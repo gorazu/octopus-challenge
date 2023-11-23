@@ -13,11 +13,13 @@
     "dependencies": {
         "next": "12.2.1",
         "react": "17.0.2",
-        "react-dom": "17.0.2"
+        "react-dom": "17.0.2",
+        "styled-components": "^6.1.1"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "^5.16.4",
         "@testing-library/react": "^12.1.5",
+        "@types/styled-components": "^5.1.32",
         "eslint": "^8.19.0",
         "eslint-config-next": "^12.2.1",
         "eslint-config-prettier": "^9.0.0",
