@@ -1,7 +1,5 @@
+import ProductPage from '../components/organisms/ProductPage/ProductPage';
+
 export default function Product() {
-    return (
-        <>
-            <div>Product page</div>
-        </>
-    );
+    return <ProductPage />;
 }
