@@ -1,6 +1,8 @@
 import { render, fireEvent } from '@testing-library/react';
 import Product from '../components/molecules/Product/Product';
 import { ProductFragment } from '../generated/graphql';
+import { CartProvider } from '../contexts/CartContext';
+import Header from '../components/molecules/Header/Header';
 
 const PRODUCT: ProductFragment = {
     id: '1',
@@ -38,7 +40,14 @@ test('should be able to increase and decrease product quantity', async () => {
 });
 
 test('should be able to add items to the basket', async () => {
-    const { getByText, getByTitle } = render(<Product fragment={PRODUCT} />);
+    const { getByText, getByTitle } = render(
+        <>
+            <CartProvider>
+                <Header />
+                <Product fragment={PRODUCT} />
+            </CartProvider>
+        </>
+    );
 
     const increaseQuantity = getByText('+');
 

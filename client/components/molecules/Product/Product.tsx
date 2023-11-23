@@ -1,5 +1,5 @@
 import { ProductFragment } from '../../../generated/graphql';
-import ProductQuantity from '../../atoms/ProductQuantity/ProductQuantity';
+import ProductActions from '../ProductActions/ProductActions';
 
 export interface ProductProps {
     fragment: ProductFragment;
@@ -8,7 +8,7 @@ export interface ProductProps {
 const Product = ({ fragment }: ProductProps) => {
     return (
         <>
-            {fragment.name} <ProductQuantity fragment={fragment} />
+            {fragment.name} <ProductActions fragment={fragment} />
         </>
     );
 };

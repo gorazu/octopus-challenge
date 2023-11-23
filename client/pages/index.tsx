@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-const logoSrc = 'https://static.octopuscdn.com/logos/logo.svg';
+export const logoSrc = 'https://static.octopuscdn.com/logos/logo.svg';
 
 export default function Home() {
     return (
