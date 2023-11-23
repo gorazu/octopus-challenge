@@ -1,0 +1,16 @@
+fragment Product on Product {
+    id
+    name
+    power
+    description
+    price
+    quantity
+    brand
+    weight
+    height
+    width
+    length
+    model_code
+    colour
+    img_url
+}

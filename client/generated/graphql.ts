@@ -195,20 +195,46 @@ export type QueryAllProductsArgs = {
   sortOrder?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type ProductQuantityFragment = { __typename?: 'Product', id: string, quantity: number };
+
+export type ProductFragment = { __typename?: 'Product', id: string, name: string, power: string, description: string, price: number, quantity: number, brand: string, weight: number, height: number, width: number, length: number, model_code: string, colour: string, img_url: string };
+
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductsQuery = { __typename?: 'Query', allProducts?: Array<{ __typename?: 'Product', id: string, name: string } | null> | null };
+export type ProductsQuery = { __typename?: 'Query', allProducts?: Array<{ __typename?: 'Product', id: string, name: string, power: string, description: string, price: number, quantity: number, brand: string, weight: number, height: number, width: number, length: number, model_code: string, colour: string, img_url: string } | null> | null };
 
-
+export const ProductQuantityFragmentDoc = gql`
+    fragment ProductQuantity on Product {
+  id
+  quantity
+}
+    `;
+export const ProductFragmentDoc = gql`
+    fragment Product on Product {
+  id
+  name
+  power
+  description
+  price
+  quantity
+  brand
+  weight
+  height
+  width
+  length
+  model_code
+  colour
+  img_url
+}
+    `;
 export const ProductsDocument = gql`
     query Products {
   allProducts {
-    id
-    name
+    ...Product
   }
 }
-    `;
+    ${ProductFragmentDoc}`;
 
 /**
  * __useProductsQuery__

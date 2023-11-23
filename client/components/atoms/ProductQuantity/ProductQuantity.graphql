@@ -1,0 +1,4 @@
+fragment ProductQuantity on Product {
+    id
+    quantity
+}
