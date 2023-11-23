@@ -1,13 +1,18 @@
 import Image from 'next/image';
 
+const logoSrc = 'https://static.octopuscdn.com/logos/logo.svg';
+
 export default function Home() {
     return (
         <main>
             <div className="home">
                 <figure>
                     <Image
-                        src="https://static.octopuscdn.com/logos/logo.svg"
+                        loader={() => logoSrc}
+                        src={logoSrc}
                         alt="Octopus Energy Logo"
+                        width={470}
+                        height={67}
                     />
                 </figure>
                 <h1>Welcome to the Octopus Energy Frontend code test!</h1>
