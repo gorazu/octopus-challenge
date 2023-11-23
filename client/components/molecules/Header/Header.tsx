@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { logoSrc } from '../../../pages';
-import { useCart } from '../../../contexts/CartContext';
 import Cart from '../Cart/Cart';
 
 const Container = styled.div`
@@ -12,7 +11,6 @@ const Container = styled.div`
 `;
 
 const Header = () => {
-    const { cartProductQuantity } = useCart();
     return (
         <Container>
             <Image

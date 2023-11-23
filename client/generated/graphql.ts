@@ -195,23 +195,26 @@ export type QueryAllProductsArgs = {
   sortOrder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type ProductQuantityFragment = { __typename?: 'Product', id: string, quantity: number };
+export type ProductDescriptionFragment = { __typename: 'Product', description: string };
 
-export type ProductFragment = { __typename?: 'Product', id: string, name: string, power: string, description: string, price: number, quantity: number, brand: string, weight: number, height: number, width: number, length: number, model_code: string, colour: string, img_url: string };
+export type ProductFragment = { __typename: 'Product', id: string, name: string, power: string, description: string, price: number, quantity: number, brand: string, weight: number, height: number, width: number, length: number, model_code: string, colour: string, img_url: string };
+
+export type ProductActionsFragment = { __typename: 'Product', quantity: number, price: number };
 
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductsQuery = { __typename?: 'Query', allProducts?: Array<{ __typename?: 'Product', id: string, name: string, power: string, description: string, price: number, quantity: number, brand: string, weight: number, height: number, width: number, length: number, model_code: string, colour: string, img_url: string } | null> | null };
+export type ProductsQuery = { __typename?: 'Query', allProducts?: Array<{ __typename: 'Product', id: string, name: string, power: string, description: string, price: number, quantity: number, brand: string, weight: number, height: number, width: number, length: number, model_code: string, colour: string, img_url: string } | null> | null };
 
-export const ProductQuantityFragmentDoc = gql`
-    fragment ProductQuantity on Product {
-  id
-  quantity
+export const ProductDescriptionFragmentDoc = gql`
+    fragment ProductDescription on Product {
+  __typename
+  description
 }
     `;
 export const ProductFragmentDoc = gql`
     fragment Product on Product {
+  __typename
   id
   name
   power
@@ -228,9 +231,17 @@ export const ProductFragmentDoc = gql`
   img_url
 }
     `;
+export const ProductActionsFragmentDoc = gql`
+    fragment ProductActions on Product {
+  __typename
+  quantity
+  price
+}
+    `;
 export const ProductsDocument = gql`
     query Products {
   allProducts {
+    __typename
     ...Product
   }
 }

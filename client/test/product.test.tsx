@@ -5,6 +5,7 @@ import { CartProvider } from '../contexts/CartContext';
 import Header from '../components/molecules/Header/Header';
 
 const PRODUCT: ProductFragment = {
+    __typename: 'Product',
     id: '1',
     name: 'Energy saving light bulb',
     power: '25W',

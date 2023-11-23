@@ -1,18 +1,29 @@
 import styled from 'styled-components';
-import { ProductQuantityFragment } from '../../../generated/graphql';
+import { ProductActionsFragment } from '../../../generated/graphql';
 import { useCallback, useState } from 'react';
 import ProductQuantity, {
     ProductQuantityAction
 } from '../../atoms/ProductQuantity/ProductQuantity';
 import { useCart } from '../../../contexts/CartContext';
+import Button from '../../atoms/Button.tsx/Button';
 
-const Container = styled.div`
-    display: flex;
+const Price = styled.span`
+    font-size: 2rem;
+`;
+
+const Grid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-end;
     gap: 1rem;
 `;
 
+const StyledButton = styled(Button)`
+    grid-column: 1 / -1;
+`;
+
 export interface ProductActionsProps {
-    fragment: ProductQuantityFragment;
+    fragment: ProductActionsFragment;
 }
 
 const ProductActions = ({ fragment }: ProductActionsProps) => {
@@ -36,10 +47,22 @@ const ProductActions = ({ fragment }: ProductActionsProps) => {
     );
 
     return (
-        <Container>
-            <ProductQuantity quantity={quantity} onUpdateQuantity={updateQuantity} />
-            <button onClick={() => setCartProductQuantity(quantity)}>Add to cart</button>
-        </Container>
+        <Grid>
+            <Price>
+                {Intl.NumberFormat('en-GB', {
+                    style: 'currency',
+                    currency: 'GBP'
+                }).format(fragment.price / 100)}
+            </Price>
+            <ProductQuantity
+                quantity={quantity}
+                maxQuantity={fragment.quantity}
+                onUpdateQuantity={updateQuantity}
+            />
+            <StyledButton onClick={() => setCartProductQuantity(quantity)}>
+                Add to cart
+            </StyledButton>
+        </Grid>
     );
 };
 

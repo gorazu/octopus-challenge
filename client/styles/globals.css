@@ -2,6 +2,7 @@
 :root {
   --hemocyanin: #180048;
   --ice: #f0ffff;
+  --lightgrey: #F2F2F2;
   --plum: #600e6b;
   --purpleHaze: #a49fc8;
   --siphon: #100030;
@@ -13,6 +14,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: Gotham, helvetica, arial, sans-serif;
+  font-size: 14px;
   color: var(--ice);
 }
 

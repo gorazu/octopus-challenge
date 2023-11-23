@@ -1,0 +1,5 @@
+fragment ProductActions on Product {
+    __typename
+    quantity
+    price
+}
