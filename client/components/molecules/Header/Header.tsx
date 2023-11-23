@@ -13,13 +13,7 @@ const Container = styled.div`
 const Header = () => {
     return (
         <Container>
-            <Image
-                loader={() => logoSrc}
-                src={logoSrc}
-                alt="Octopus Energy Logo"
-                width={235}
-                height={33}
-            />
+            <Image src="/octopus-logo.svg" alt="Octopus Energy Logo" width={235} height={33} />
             <Cart />
         </Container>
     );

@@ -66,3 +66,66 @@ test('should be able to add items to the basket', async () => {
     const basketItems = getByTitle('Basket items');
     expect(basketItems).toHaveTextContent('4');
 });
+
+test('should be able to remove items from the basket', async () => {
+    const { getByText, getByTitle } = render(
+        <>
+            <CartProvider>
+                <Header />
+                <Product fragment={PRODUCT} />
+            </CartProvider>
+        </>
+    );
+
+    const increaseQuantity = getByText('+');
+
+    const currentQuantity = getByTitle('Current quantity');
+
+    fireEvent.click(increaseQuantity);
+
+    expect(currentQuantity).toHaveTextContent('2');
+
+    const addToBasketElement = getByText('Add to cart');
+    fireEvent.click(addToBasketElement);
+
+    const basketItems = getByTitle('Basket items');
+    expect(basketItems).toHaveTextContent('2');
+
+    const removeItems = getByText('X');
+
+    fireEvent.click(removeItems);
+
+    expect(basketItems).toBeEmptyDOMElement();
+});
+
+test('should not be able to add more items than quantity available', async () => {
+    const { getByText, getByTitle } = render(
+        <>
+            <CartProvider>
+                <Header />
+                <Product fragment={PRODUCT} />
+            </CartProvider>
+        </>
+    );
+
+    const increaseQuantity = getByText('+');
+
+    const currentQuantity = getByTitle('Current quantity');
+
+    fireEvent.click(increaseQuantity);
+    fireEvent.click(increaseQuantity);
+    fireEvent.click(increaseQuantity);
+
+    expect(currentQuantity).toHaveTextContent('4');
+
+    const addToBasketElement = getByText('Add to cart');
+    fireEvent.click(addToBasketElement);
+
+    const basketItems = getByTitle('Basket items');
+    expect(basketItems).toHaveTextContent('4');
+
+    fireEvent.click(addToBasketElement);
+    setTimeout(() => {
+        expect(getByText('There is no more products available')).toBeInTheDocument();
+    }, 1000);
+});

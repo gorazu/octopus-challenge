@@ -6,6 +6,7 @@ import ProductQuantity, {
 } from '../../atoms/ProductQuantity/ProductQuantity';
 import { useCart } from '../../../contexts/CartContext';
 import Button from '../../atoms/Button.tsx/Button';
+import toast from 'react-hot-toast';
 
 const Price = styled.span`
     font-size: 2rem;
@@ -28,7 +29,8 @@ export interface ProductActionsProps {
 
 const ProductActions = ({ fragment }: ProductActionsProps) => {
     const [quantity, setQuantity] = useState(1);
-    const { setCartProductQuantity } = useCart();
+
+    const { cartProductQuantity, setCartProductQuantity } = useCart();
 
     const updateQuantity = useCallback(
         (action: ProductQuantityAction) => {
@@ -37,13 +39,14 @@ const ProductActions = ({ fragment }: ProductActionsProps) => {
                     quantity > 1 && setQuantity((quantity) => quantity - 1);
                     return;
                 case ProductQuantityAction.INCREASE:
-                    quantity !== fragment.quantity && setQuantity((quantity) => quantity + 1);
+                    quantity !== cartProductQuantity + fragment.quantity &&
+                        setQuantity((quantity) => quantity + 1);
                     return;
                 default:
                     return;
             }
         },
-        [quantity, fragment.quantity]
+        [quantity, fragment.quantity, cartProductQuantity]
     );
 
     return (
@@ -56,10 +59,23 @@ const ProductActions = ({ fragment }: ProductActionsProps) => {
             </Price>
             <ProductQuantity
                 quantity={quantity}
-                maxQuantity={fragment.quantity}
+                maxQuantity={
+                    fragment.quantity - cartProductQuantity === 0
+                        ? 1
+                        : fragment.quantity - cartProductQuantity
+                }
                 onUpdateQuantity={updateQuantity}
             />
-            <StyledButton onClick={() => setCartProductQuantity(quantity)}>
+            <StyledButton
+                onClick={() => {
+                    if (cartProductQuantity === fragment.quantity) {
+                        toast('There is no more products available');
+                        return;
+                    }
+                    setCartProductQuantity(cartProductQuantity + quantity);
+                    setQuantity(1);
+                }}
+            >
                 Add to cart
             </StyledButton>
         </Grid>

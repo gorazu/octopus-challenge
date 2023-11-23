@@ -15,7 +15,7 @@ const Title = styled.h2`
     margin: 0;
 `;
 
-const Content = styled.p`
+const Content = styled.div`
     width: 100%;
     font-size: 1rem;
     line-height: 1.6rem;

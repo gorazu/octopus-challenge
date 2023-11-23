@@ -33,7 +33,7 @@ export interface ProductQuantityProps {
 const ProductQuantity = ({ quantity, maxQuantity, onUpdateQuantity }: ProductQuantityProps) => {
     return (
         <Container>
-            <span title="Current quantity">Qty</span>
+            <span>Qty</span>
             <ActionsContainer>
                 <Button
                     disabled={quantity === 1}

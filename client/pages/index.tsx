@@ -8,8 +8,7 @@ export default function Home() {
             <div className="home">
                 <figure>
                     <Image
-                        loader={() => logoSrc}
-                        src={logoSrc}
+                        src="/octopus-logo.svg"
                         alt="Octopus Energy Logo"
                         width={470}
                         height={67}

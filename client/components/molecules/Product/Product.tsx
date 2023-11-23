@@ -53,6 +53,7 @@ const Product = ({ fragment }: ProductProps) => {
                         alt="Product image"
                         layout="fill"
                         objectFit="contain"
+                        unoptimized
                     />
                 </ImgContainer>
 

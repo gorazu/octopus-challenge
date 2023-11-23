@@ -5,6 +5,7 @@ import Header from '../components/molecules/Header/Header';
 import { CartProvider } from '../contexts/CartContext';
 import Footer from '../components/atoms/Footer/Footer';
 import styled from 'styled-components';
+import { Toaster } from 'react-hot-toast';
 
 const MainLayout = styled.div`
     display: flex;
@@ -45,6 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ApolloProvider {...{ client }}>
             <CartProvider>
                 <MainLayout>
+                    <Toaster />
                     <Header />
                     <Component {...pageProps} />
                     <Spacer />
